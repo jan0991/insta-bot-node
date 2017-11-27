@@ -22,8 +22,19 @@ const humanDelay = async (page) => {
     await page.waitFor(delay);
 };
 
+const randomInArray = (arr) => {
+    return arr[Math.floor(Math.random()*arr.length)];
+};
+
+const trimArray = (arr, limit) => {
+    if (arr.length > limit) arr.length = limit;
+    return arr;
+};
+
 module.exports = {
     scrollToBottom,
     probability,
-    humanDelay
+    humanDelay,
+    randomInArray,
+    trimArray,
 };

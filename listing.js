@@ -1,5 +1,6 @@
 require('babel-polyfill');
-import { scrollToBottom, humanDelay } from './helpers';
+import { scrollToBottom, trimArray } from './helpers';
+import config from './config';
 import _log from './log';
 import post from './post';
 
@@ -7,12 +8,11 @@ const listing = {
 
     load: async (page, tag) => {
         await page.goto(`https://www.instagram.com/explore/tags/${tag}/`, { waitUntil: 'networkidle0'});
-        _log('Success', `Loaded posts with #${tag} tag`);        
-        await scrollToBottom(page, 5);
-        _log('Success', `Loaded more posts.`);
+        _log('Pending', 'Loading posts...', tag);        
+        await scrollToBottom(page, 8);
     },
 
-    getUrls: async (page) => {
+    getUrls: async (page, tag) => {
         const posts = await page.evaluate(() => {
             const urls = [];
             const posts = document.querySelectorAll('article > div:last-child > div:first-child > div > div');
@@ -22,18 +22,18 @@ const listing = {
             });
             return urls;
         });
-        _log('Success', 'Collected URLs from page...')
-        return posts;
+        const trimmedPosts = trimArray(posts, config.instagram.bot.postsPerTag);
+        _log('Success', `Collected ${trimmedPosts.length} post URLs from page.`, tag);
+        return trimmedPosts;
     },
 
     loopPosts: async(page, tag, paths) => {
         const total = paths.length;
-        _log('Pending', `Loading posts from tag #${tag}`);
+        _log('Pending', 'Working through posts...', tag);
         for (const [index, path] of paths.entries()) {
-            await post.load(path, page, index, total);
-            await post.like(page);
-            // await post.comment(page);
+            await post.completeActions(page, path, tag, index, total);
         }
+        _log('Success', 'Complete.', tag);
     },
 };
 

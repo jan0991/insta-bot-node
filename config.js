@@ -1,9 +1,11 @@
 module.exports = {
     instagram: {
         bot: {
-            user: 'MensFlyFashion',
-            pass: 'Brown-lamp12',
-            commentPercentage: 10,
+            user: '',
+            pass: '',
+            commentFrequency: 8,
+            followFrequency: 100,
+            postsPerTag: 100,
             tags: [
                 'mensfashion',
                 'mensstyle',
@@ -23,12 +25,11 @@ module.exports = {
                 'mensfashionpost',
             ],
             comments: [
-                'You\'re Inspiring! 👐 🙌',
-                'First Rate Work! 👍',
+                'You\'re Inspiring!',
+                'First Rate Work!',
                 'Keep Up The Good Work! :)',
-                'Great pics, as always. 😁',
-                'You are so creative! 👌👌',
-                '👏👏👏👏👏👏👏',
+                'Great pics, as always.',
+                'You are so creative!',
                 'Exceptional',
                 'Very professional ',
                 'Magnificent',
