@@ -1,8 +1,8 @@
 module.exports = {
     instagram: {
         bot: {
-            user: '',
-            pass: '',
+            user: 'MensFlyFashion',
+            pass: 'Brown-lamp12',
             commentPercentage: 10,
             tags: [
                 'mensfashion',
@@ -34,7 +34,7 @@ module.exports = {
                 'Magnificent',
                 'Superb!',
             ],
-            post_comment: '.\n.\n.\n.\n#mensfashion #mensstyle #mensflyfashion #menswear #dope #swag #swagger #street #streetfashion #fashion #outfit #clothing #instafashion #model #fashionporn #stylish #style #menstyle #motivation #follows4follow #follow4follow #beautiful #igdaily #mensfashionblog #mensfashiontips #mensfashionpost',
+            post_comment: '.\n.\n.\n.\n.\n#mensfashion #mensstyle #mensflyfashion #menswear #dope #swag #swagger #street #streetfashion #fashion #outfit #clothing #instafashion #model #fashionporn #stylish #style #menstyle #motivation #follows4follow #follow4follow #beautiful #igdaily #mensfashionblog #mensfashiontips #mensfashionpost',
         },
     },
 };
