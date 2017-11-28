@@ -1,4 +1,3 @@
-require('babel-polyfill');
 import puppeteer from 'puppeteer';
 import config from './config';
 import _log from './log';
@@ -12,8 +11,8 @@ const bot = {
         return browser;
     },
     
-    createPage: async (browser) => {
-        const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.59 Safari/537.36';
+    createPage: async (browser: any) => {
+        const userAgent:string = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.59 Safari/537.36';
         const page = await browser.newPage();    
         await page.setUserAgent(userAgent);
         await page.setViewport({
@@ -25,7 +24,7 @@ const bot = {
         return page;
     },
 
-    login: async (browser, page) => {
+    login: async (browser: any, page: any) => {
         await page.goto('https://www.instagram.com/accounts/login/', { waitUntil: 'networkidle0'});
         const username = await page.$('input[name="username"]');
         const password = await page.$('input[type="password"]');

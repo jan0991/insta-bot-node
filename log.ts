@@ -1,6 +1,4 @@
-require('babel-polyfill');
-
-const _log = (type, message, tag = false) => {
+const _log = (type: string, message: string, tag: any = false) => {
     const tagFormatted = tag ? ` | #${tag} |` : '';
     const date = new Date(Date.now()).toLocaleString();
     let typeFormatted = `[${type}]`.toUpperCase();

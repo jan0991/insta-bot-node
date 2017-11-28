@@ -1,4 +1,3 @@
-require('babel-polyfill');
 import bot from './bot';
 import listing from './listing';
 import _log from './log';

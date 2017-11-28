@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
     instagram: {
         bot: {
             user: '',
@@ -39,3 +39,5 @@ module.exports = {
         },
     },
 };
+
+export { config as default };

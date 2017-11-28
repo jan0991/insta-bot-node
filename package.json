@@ -5,20 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "build": "tsc",
+    "watch:build": "tsc --watch",
     "start": "npm run build && node dist/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/puppeteer": "^0.13.5",
     "puppeteer": "^0.13.0"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "jest": "^21.2.1",
-    "rimraf": "^2.6.2"
   }
 }

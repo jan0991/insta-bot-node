@@ -1,4 +1,3 @@
-require('babel-polyfill');
 import { scrollToBottom, trimArray } from './helpers';
 import config from './config';
 import _log from './log';
@@ -6,15 +5,15 @@ import post from './post';
 
 const listing = {
 
-    load: async (page, tag) => {
+    load: async (page: any, tag: string) => {
         await page.goto(`https://www.instagram.com/explore/tags/${tag}/`, { waitUntil: 'networkidle0'});
         _log('Pending', 'Loading posts...', tag);        
         await scrollToBottom(page, 8);
     },
 
-    getUrls: async (page, tag) => {
+    getUrls: async (page: any, tag: string) => {
         const posts = await page.evaluate(() => {
-            const urls = [];
+            const urls: string[] = [];
             const posts = document.querySelectorAll('article > div:last-child > div:first-child > div > div');
             posts.forEach((post) => {
                 const link = post.querySelector('a');
@@ -27,7 +26,7 @@ const listing = {
         return trimmedPosts;
     },
 
-    loopPosts: async(page, tag, paths) => {
+    loopPosts: async(page: any, tag: string, paths: string[]) => {
         const total = paths.length;
         _log('Pending', 'Working through posts...', tag);
         for (const [index, path] of paths.entries()) {
