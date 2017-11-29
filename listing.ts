@@ -6,18 +6,19 @@ import post from './post';
 const listing = {
 
     load: async (page: any, tag: string) => {
-        await page.goto(`https://www.instagram.com/explore/tags/${tag}/`, { waitUntil: 'networkidle0'});
-        _log('Pending', 'Loading posts...', tag);        
+        await page.goto(`https://www.instagram.com/explore/tags/${tag}/`, { waitUntil: 'networkidle0' });
+        _log('Pending', 'Loading posts...', tag);
         await scrollToBottom(page, 8);
     },
 
     getUrls: async (page: any, tag: string) => {
         const posts = await page.evaluate(() => {
-            const urls: string[] = [];
+            const urls: any[] = [];
             const posts = document.querySelectorAll('article > div:last-child > div:first-child > div > div');
             posts.forEach((post) => {
-                const link = post.querySelector('a');
-                urls.push(link.getAttribute('href'));
+                const link = <HTMLAnchorElement>post.querySelector('a');
+                const href = link.getAttribute('href');
+                urls.push(href);
             });
             return urls;
         });
@@ -26,7 +27,7 @@ const listing = {
         return trimmedPosts;
     },
 
-    loopPosts: async(page: any, tag: string, paths: string[]) => {
+    loopPosts: async (page: any, tag: string, paths: string[]) => {
         const total = paths.length;
         _log('Pending', 'Working through posts...', tag);
         for (const [index, path] of paths.entries()) {

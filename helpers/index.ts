@@ -12,11 +12,9 @@ export const shuffleArray = (arr: string[]) => {
 };
 
 export const probability = (decimal: number) => {
-    if (typeof decimal !== 'number') throw new Error('paramater should be a number');
     if (decimal > 1 || decimal < 0) throw new Error('paramater should be a value between 0 and 1');
     const number = Math.random();
-    if (number > decimal) return false;
-    return true;
+    return !!(number < decimal);
 };
 
 export const humanDelay = async (page: any) => {
@@ -27,13 +25,10 @@ export const humanDelay = async (page: any) => {
 };
 
 export const randomInArray = (arr: string[]) => {
-    if (!Array.isArray(arr)) throw new Error('arr paramater should be an array');
     return arr[Math.floor(Math.random()*arr.length)];
 };
 
 export const trimArray = (arr: string[], limit: number) => {
-    if (!Array.isArray(arr)) throw new Error('arr paramater should be an array');    
-    if (typeof limit !== 'number') throw new Error('limit paramater should be a number');    
     if (limit > 200) throw new Error('limit paramater should be below 200');    
     if (arr.length > limit) arr.length = limit;
     return arr;
